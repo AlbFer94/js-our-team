@@ -49,3 +49,17 @@ function renderTeam(listaMembri) {
   teamContainer.innerHTML = htmlDaScrivere;
 }
 
+function getMemberCard(member) {
+  return `<div class="team-card">
+                    <div class="card-image">
+                        <img src="${member.img}" alt="Marco Bianchi">
+                    </div>
+                    <div class="card-text">
+                        <h3>${member.name}</h3>
+                        <p>${member.role}</p>
+                        <p>${member.email}</p>
+                    </div>
+                    </div>`;
+
+}
+
