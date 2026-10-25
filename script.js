@@ -64,3 +64,11 @@ function getMemberCard(member) {
 }
 
 renderTeam(teamMembers);
+
+/* Gestione del form */
+
+const formEl = document.getElementById("member-form");
+const nameField = document.getElementById("name");
+const roleField = document.getElementById("role");
+const emailField = document.getElementById("email");
+const imgField = document.getElementById("image");
