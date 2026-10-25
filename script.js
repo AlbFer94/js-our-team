@@ -67,8 +67,39 @@ renderTeam(teamMembers);
 
 /* Gestione del form */
 
-const formEl = document.getElementById("member-form");
+const form = document.getElementById("member-form");
 const nameField = document.getElementById("name");
 const roleField = document.getElementById("role");
 const emailField = document.getElementById("email");
-const imgField = document.getElementById("image");
+const imageField = document.getElementById("image");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const name = nameField.value;
+  const email = emailField.value;
+  const role = roleField.value;
+  const img = imageField.value;
+
+  if (!name || !email || !role || !image) {
+    alert("Tutti i campi sono obbligatori");
+    return;
+  }
+
+  const newMember = {
+    name,
+    role,
+    email,
+    img,
+  };
+
+  teamMembers.push(newMember);
+
+  renderTeam(teamMembers);
+
+  event.target.reset();
+})
+
+
+
+
