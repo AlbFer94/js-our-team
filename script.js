@@ -36,3 +36,16 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+function renderTeam(listaMembri) {
+  const teamContainer = document.querySelector(".team-container");
+
+  let htmlDaScrivere = "";
+
+  for (const thisMember of listaMembri) {
+    htmlDaScrivere += getMemberCard(thisMember);
+  }
+
+  teamContainer.innerHTML = htmlDaScrivere;
+}
+
