@@ -37,7 +37,18 @@ let teamMembers = [
   }
 ];
 
+const membriCorrenti = loadStorage();
+
+if (membriCorrenti == null) {
+
+  saveMembersToStorage(teamMembers);
+
+} else {
+  teamMembers = membriCorrenti;
+}
+
 renderTeam(teamMembers);
+
 
 function renderTeam(listaMembri) {
   const teamContainer = document.querySelector(".team-container");
