@@ -1,4 +1,4 @@
-const teamMembers = [
+let teamMembers = [
   {
     name: "Marco Bianchi",
     role: "Designer",
@@ -37,6 +37,8 @@ const teamMembers = [
   }
 ];
 
+renderTeam(teamMembers);
+
 function renderTeam(listaMembri) {
   const teamContainer = document.querySelector(".team-container");
 
@@ -63,7 +65,18 @@ function getMemberCard(member) {
 
 }
 
-renderTeam(teamMembers);
+function saveMembersToStorage(membersList) {
+  const datoSerializzato = JSON.stringify(membersList);
+  localStorage.setItem("membri", datoSerializzato);
+}
+
+function loadStorage() {
+  const datoSerializzato = localStorage.getItem("membri");
+  const parsedData = JSON.parse(datoSerializzato);
+
+  return parsedData;
+}
+
 
 /* Gestione del form */
 
@@ -95,10 +108,12 @@ form.addEventListener("submit", function (event) {
 
   teamMembers.push(newMember);
 
+  saveMembersToStorage(teamMembers);
+
   renderTeam(teamMembers);
 
   event.target.reset();
-})
+});
 
 
 
