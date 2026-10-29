@@ -37,7 +37,8 @@ let teamMembers = [
   }
 ];
 
-const membriCorrenti = loadStorage();
+let membriCorrenti = loadStorage();
+const defaultArray = [...teamMembers];
 
 if (membriCorrenti == null) {
 
@@ -65,7 +66,7 @@ function renderTeam(listaMembri) {
 function getMemberCard(member) {
   return `<div class="team-card">
                     <div class="card-image">
-                        <img src="${member.img}" alt="Marco Bianchi">
+                        <img src="${member.img}" alt="${member.name}">
                     </div>
                     <div class="card-text">
                         <h3>${member.name}</h3>
@@ -88,7 +89,6 @@ function loadStorage() {
   return parsedData;
 }
 
-
 /* Gestione del form */
 
 const form = document.getElementById("member-form");
@@ -105,7 +105,7 @@ form.addEventListener("submit", function (event) {
   const role = roleField.value;
   const img = imageField.value;
 
-  if (!name || !email || !role || !image) {
+  if (!name || !email || !role || !img) {
     alert("Tutti i campi sono obbligatori");
     return;
   }
@@ -124,6 +124,19 @@ form.addEventListener("submit", function (event) {
   renderTeam(teamMembers);
 
   event.target.reset();
+});
+
+/* Gestione Reset team-Members */
+
+
+const resetBtn = document.getElementById("reset");
+
+resetBtn.addEventListener("click", function () {
+  teamMembers = [...defaultArray];
+
+  saveMembersToStorage(teamMembers);
+
+  renderTeam(teamMembers);
 });
 
 
